@@ -1,0 +1,32 @@
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    public long solution(long n) {
+        long answer = 0;
+        
+        String parseParameterToString = String.format("%s", n);
+        
+        String [] parameterSplit = parseParameterToString.split("");
+        
+        List<String> splitArrayToList = Arrays.asList(parameterSplit);
+        
+        Collections.sort(splitArrayToList, Comparator.reverseOrder());
+        
+        parameterSplit = splitArrayToList.toArray(new String [splitArrayToList.size()]);
+        
+        StringBuilder sb = new StringBuilder();
+        
+        for(int i = 0; i < parameterSplit.length; i++) {
+            sb.append(parameterSplit[i]);
+        }
+        
+        parseParameterToString = sb.toString();
+        
+        System.out.print(parseParameterToString);
+        
+        answer = Long.parseLong(parseParameterToString);
+        
+        return answer;
+    }
+}
