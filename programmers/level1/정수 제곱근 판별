@@ -1,0 +1,17 @@
+class Solution {
+    public long solution(long n) {
+        long answer = 0;
+        
+        double sqrt = Math.sqrt(n);
+        
+        if(sqrt - (int)sqrt != 0.0) {
+            answer = -1;
+        } else {
+            sqrt = (long)sqrt + 1;
+            
+            answer = (long)sqrt * (long)sqrt;
+        }
+        
+        return answer;
+    }
+}
