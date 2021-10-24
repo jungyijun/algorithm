@@ -1,0 +1,18 @@
+import java.util.*;
+
+public class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        
+        // parameter를 String으로 변환한다.
+        // https://blog.opid.kr/453를 보면 String.valueOf가 int to String에서는 속도가 더 잘 나오는거 같다.
+        String parameterToString = String.valueOf(n);
+        
+        // Character.getNumericValue()를 이용해 char를 int로 변환한다.
+        for(int i = 0; i < parameterToString.length(); i++) {
+            answer += Character.getNumericValue(parameterToString.charAt(i));
+        }
+        
+        return answer;
+    }
+}
