@@ -1,0 +1,30 @@
+import java.lang.*;
+
+class Solution {
+    public String solution(String s) {
+        String answer = "";
+        
+        // parameter s를 대문자로 변경한다.
+        String toUpperParameter = s.toUpperCase();
+        
+        // split()을 이용해 String[]로 반환 받는다.
+        String[] toArray = toUpperParameter.split("");
+        
+        StringBuilder sb = new StringBuilder();
+        
+        int count = 0;
+
+        // StringBuilder와 toLowerCase()를 이용해 홀수번을 소문자로 변경한 뒤 append 한다.
+        for(String str : toArray) {
+            count = str.equals(" ") ? 0 : ++count;
+            
+            if(count % 2 == 0) {
+                sb.append(str.toLowerCase());
+            } else {
+                sb.append(str);
+            }
+        }
+        
+        return answer = sb.toString();
+    }
+}
