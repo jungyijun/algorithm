@@ -1,0 +1,24 @@
+import java.util.*;
+
+class Solution {
+    public String[] solution(String[] strings, int n) {
+        String[] answer = new String[strings.length];
+        ArrayList<String> arrayList = new ArrayList<String>();
+        
+        // ArrayList에 n번째 문자를 문자열 맨 처음에 붙인다.
+        // 맨 처음에 붙임으로서 n번째에 동일한 문자가 나오는 경우
+        // 사전순으로 정렬이 가능하다.
+        for(int i = 0; i < strings.length; i++) {
+            arrayList.add(strings[i].charAt(n)+ strings[i]);
+        }
+
+        Collections.sort(arrayList);
+        
+        // 맨 앞 0번째 문자를 제외하고 answer에 담는다.
+        for(int i = 0; i < arrayList.size(); i++) {
+            answer[i] = arrayList.get(i).substring(1, arrayList.get(i).length());
+        }
+        
+        return answer;
+    }
+}
