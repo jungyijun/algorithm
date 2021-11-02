@@ -1,0 +1,31 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] arr, int divisor) {
+        int[] answer;
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        
+        // divisor로 나누어 떨어지는 수를 ArrayList에 담는다.
+        for(int i = 0; i < arr.length; i++) {
+            if(arr[i] % divisor == 0) {
+                arrayList.add(arr[i]);
+            }
+        }
+        
+        // ArrayList의 길이를 확인한 후 0이 아니면 정렬을 하고 answer에 담는다.
+        if(arrayList.size() != 0) {
+            Collections.sort(arrayList);
+            answer = new int[arrayList.size()];
+            
+            for(int i = 0; i < arrayList.size(); i++) {
+                answer[i] = arrayList.get(i);
+            }
+            
+        } else {
+            answer = new int[1];
+            answer[0] = -1;
+        }
+        
+        return answer;
+    }
+}
