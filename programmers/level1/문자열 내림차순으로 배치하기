@@ -1,0 +1,27 @@
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    public String solution(String s) {
+        StringBuilder sb = new StringBuilder();
+        
+        // 문자열 s를 split()을 사용해 문자열 배열로 반환한다.
+        String[] stringAr = s.split("");
+        ArrayList<String> stringArrayList = new ArrayList<String>();
+        
+        // 반환된 문자열 배열을 ArrayList에 담는다.
+        for(int i = 0; i < stringAr.length; i++) {
+            stringArrayList.add(stringAr[i]);
+        }
+        
+        // Collections.sort()를 이용해 내림차순으로 정렬한다.
+        // A = 65, a = 97 이기에 소문자가 더 크다.
+        Collections.sort(stringArrayList, Collections.reverseOrder());
+        
+        for(int i = 0; i < stringArrayList.size(); i++) {
+            sb.append(stringArrayList.get(i));
+        }
+        
+        return sb.toString();
+    }
+}
