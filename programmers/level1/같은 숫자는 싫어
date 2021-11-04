@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class Solution {
+    public int[] solution(int []arr) {
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        
+        // arr의 원소의 최대 크기는 9이기에 초기값은 10이상으로 설정한다.
+        int prevInt = 10;
+        
+        // prevInt와 arr의 원소의 값이 같지 않으면 arrayList에 담고
+        // prevInt에 arrayList에 담은 arr의 원소의 값을 넣는다.
+        for(int i = 0; i < arr.length; i++) {
+            if(arr[i] != prevInt) {
+                arrayList.add(arr[i]);
+                prevInt = arr[i];
+            }
+        }
+        
+        int[] answer = new int[arrayList.size()];
+        
+        // arrayList의 길이만큼 반복하고 Integer 타입이기에
+        // intValue()를 사용해 int로 변환하여 answer 배열에 담는다.
+        for(int i = 0; i < arrayList.size(); i++) {
+            answer[i] = arrayList.get(i);
+        }
+        
+        return answer;
+    }
+}
