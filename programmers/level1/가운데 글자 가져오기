@@ -1,0 +1,20 @@
+import java.lang.*;
+
+class Solution {
+    public String solution(String s) {
+        StringBuilder sb = new StringBuilder();
+        
+        // 문자열의 중간 Index를 구한다.
+        int checkLength = s.length() / 2;
+
+        // 문자열의 길이가 짝수인지 홀수인지 확인한다.
+        if(s.length() % 2 == 0) {
+            sb.append(s.charAt(checkLength - 1));
+            sb.append(s.charAt(checkLength));
+        } else {
+            sb.append(s.charAt(checkLength));
+        }
+        
+        return sb.toString();
+    }
+}
