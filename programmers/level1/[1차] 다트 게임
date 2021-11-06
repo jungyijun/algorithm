@@ -1,0 +1,64 @@
+import java.lang.*;
+
+class Solution {
+    public int solution(String dartResult) {
+        int answer = 0;
+        
+        // dartResult의 숫자만 추출하여 배열로 반환한다.
+        String[] parsePoint = dartResult.split("\\D+");
+        int[] originPoint = new int [parsePoint.length];
+        
+        // parsePoint의 값을 int로 변환한 후 originPoint에 담는다.
+        for(int i = 0; i < parsePoint.length; i++) {
+            originPoint[i] = Integer.valueOf(parsePoint[i]);
+        }
+        
+        // dartResult의 문자만 추출하여 배열로 반환한다.
+        String[] calcPoint = dartResult.split("\\d+");
+        
+        // 획득한 점수를 담는 배열
+        int[] getPoint = new int[3];
+        
+        // 점수를 연산한다.
+        for(int i = 0; i < originPoint.length; i++) {
+            int tempGetPoint = 0;
+    
+            // split으로 쪼갠 배열 0번째 Index에 공백이 들어가기에 i+1 Index부터 시작한다.
+            for(int j = 0; j < calcPoint[i + 1].length(); j++) {
+                if(calcPoint[i + 1].charAt(j) == 'S') {
+                    tempGetPoint += (int)Math.pow(originPoint[i], 1);
+                }
+                
+                if(calcPoint[i + 1].charAt(j) == 'D') {
+                    tempGetPoint += (int)Math.pow(originPoint[i], 2);
+                }
+                
+                if(calcPoint[i + 1].charAt(j) == 'T') {
+                    tempGetPoint += (int)Math.pow(originPoint[i], 3);
+                }
+                
+                if(calcPoint[i + 1].charAt(j) == '*') {
+                    // 이전 점수가 존재하면은 연산
+                    if(i >= 1) {
+                        getPoint[i - 1] = getPoint[i - 1] * 2;
+                    }
+                    
+                    tempGetPoint = tempGetPoint * 2;
+                }
+                
+                if(calcPoint[i + 1].charAt(j) == '#') {
+                    tempGetPoint = tempGetPoint * -1;
+                }
+            }
+            
+            getPoint[i] = tempGetPoint;
+        }
+        
+        // 연산한 점수를 합산한다.
+        for(int i = 0; i < getPoint.length; i++) {
+            answer += getPoint[i];
+        }
+        
+        return answer;
+    }
+}
