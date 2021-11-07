@@ -1,3 +1,4 @@
+import java.util.*;
 import java.lang.*;
 
 class Solution {
@@ -6,12 +7,9 @@ class Solution {
         
         // dartResult의 숫자만 추출하여 배열로 반환한다.
         String[] parsePoint = dartResult.split("\\D+");
-        int[] originPoint = new int [parsePoint.length];
         
-        // parsePoint의 값을 int로 변환한 후 originPoint에 담는다.
-        for(int i = 0; i < parsePoint.length; i++) {
-            originPoint[i] = Integer.valueOf(parsePoint[i]);
-        }
+        // stream을 이용해 연산을 위해 String[]을 int[]로 변환한다.
+        int[] originPoint = Arrays.stream(parsePoint).mapToInt(Integer::valueOf).toArray();
         
         // dartResult의 문자만 추출하여 배열로 반환한다.
         String[] calcPoint = dartResult.split("\\d+");
