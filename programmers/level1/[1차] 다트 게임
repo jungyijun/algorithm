@@ -25,29 +25,31 @@ class Solution {
     
             // split으로 쪼갠 배열 0번째 Index에 공백이 들어가기에 i+1 Index부터 시작한다.
             for(int j = 0; j < calcPoint[i + 1].length(); j++) {
-                if(calcPoint[i + 1].charAt(j) == 'S') {
-                    tempGetPoint += (int)Math.pow(originPoint[i], 1);
-                }
-                
-                if(calcPoint[i + 1].charAt(j) == 'D') {
-                    tempGetPoint += (int)Math.pow(originPoint[i], 2);
-                }
-                
-                if(calcPoint[i + 1].charAt(j) == 'T') {
-                    tempGetPoint += (int)Math.pow(originPoint[i], 3);
-                }
-                
-                if(calcPoint[i + 1].charAt(j) == '*') {
-                    // 이전 점수가 존재하면은 연산
-                    if(i >= 1) {
-                        getPoint[i - 1] = getPoint[i - 1] * 2;
-                    }
+                switch(calcPoint[i + 1].charAt(j)) {
+                    case 'S':
+                        tempGetPoint += (int)Math.pow(originPoint[i], 1);
+                        break;
                     
-                    tempGetPoint = tempGetPoint * 2;
-                }
-                
-                if(calcPoint[i + 1].charAt(j) == '#') {
-                    tempGetPoint = tempGetPoint * -1;
+                    case 'D':
+                        tempGetPoint += (int)Math.pow(originPoint[i], 2);
+                        break;
+                        
+                    case 'T':
+                        tempGetPoint += (int)Math.pow(originPoint[i], 3);
+                        break;
+                        
+                    case '*':
+                        // 이전 점수가 존재하면은 연산
+                        if(i >= 1) {
+                            getPoint[i - 1] = getPoint[i - 1] * 2;
+                        }
+
+                        tempGetPoint = tempGetPoint * 2;
+                        break;
+                        
+                    case '#':
+                        tempGetPoint = tempGetPoint * -1;
+                        break;
                 }
             }
             
