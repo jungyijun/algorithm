@@ -1,0 +1,21 @@
+import java.util.*;
+
+class Solution {
+    public String solution(String[] participant, String[] completion) {
+        // 같은 위치로 이름을 비교하기 위해 정렬을 한다.        
+        Arrays.sort(participant);
+        Arrays.sort(completion);
+        
+        // completion이 길이가 1 작기 때문에 participant의 마지막 선수를 answer에 담아둔다.
+        String answer = participant[participant.length - 1];
+        
+        for(int i = 0; i < completion.length; i++) {
+            if(!completion[i].equals(participant[i])) {
+                answer = participant[i];
+                break;
+            }        
+        }
+        
+        return answer;
+    }
+}
