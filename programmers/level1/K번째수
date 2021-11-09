@@ -1,0 +1,24 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] array, int[][] commands) {
+       int[] answer = new int[commands.length];
+       
+       for(int i = 0; i < commands.length; i++) {
+           ArrayList<Integer> arrayList = new ArrayList<Integer>();
+           
+           // commands에서 주어진 길이만큼 arrayList에 담는다.
+           for(int j = commands[i][0] - 1; j < commands[i][1]; j++) {
+               arrayList.add(array[j]);
+               
+               // 오름차순으로 정렬한다.
+               Collections.sort(arrayList);
+           }
+           
+           // answer에 담는다.
+           answer[i] = arrayList.get(commands[i][2] - 1);
+       }
+        
+       return answer;
+    }
+}
