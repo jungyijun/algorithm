@@ -1,0 +1,13 @@
+class Solution {
+    public String[] solution(int n, int[] arr1, int[] arr2) {
+        String[] answer = new String[arr1.length];
+        
+        for(int i = 0; i < arr1.length; i++) {
+            // 비트연산자의 or 연산을 하고 자리수를 맞쳐준다.
+            // 이후 1은 #으로 0은 " "(공백)으로 치환한다.
+            answer[i] = String.format("%" + n + "s", Integer.toBinaryString(arr1[i] | arr2[i])).replaceAll("1", "#").replaceAll("0", " ");
+        }
+        
+        return answer;
+    }
+}
