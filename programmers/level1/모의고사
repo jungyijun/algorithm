@@ -1,0 +1,60 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] answers) {
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        
+        // 수포자의 문제를 찍는 패턴을 배열에 담는다.
+        int[] oneArray = {1, 2, 3, 4, 5};
+        int[] twoArray = {2, 1, 2, 3, 2, 4, 2, 5};
+        int[] threeArray = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+        
+        // 맞힌 문제 수를 카운트 할 변수를 선언한다.
+        int onePoint = 0;
+        int twoPoint = 0;
+        int threePoint = 0;
+        
+        // % 연산자를 이용해 answers의 값과 수포자의 답을 비교한다.
+        for(int i = 0; i < answers.length; i++) {
+            if(oneArray[i % oneArray.length] == answers[i]) {
+                onePoint++;
+            }
+            
+            if(twoArray[i % twoArray.length] == answers[i]) {
+                twoPoint++;
+            }
+            
+            if(threeArray[i % threeArray.length] == answers[i]) {
+                threePoint++;
+            }
+        }
+        
+        // max() 이용해 큰 값을 찾는다.
+        int maxPoint = Math.max(threePoint, Math.max(onePoint, twoPoint));
+        
+        // maxPoint와 같은 값을 가진 학생을 ArrayList에 담는다.
+        if(maxPoint == onePoint) {
+            arrayList.add(1);
+        }
+        
+        if(maxPoint == twoPoint) {
+            arrayList.add(2);
+        }
+        
+        if(maxPoint == threePoint) {
+            arrayList.add(3);
+        }
+        
+        // ArrayList를 정렬한다.
+        Collections.sort(arrayList);
+        
+        int[] answer = new int[arrayList.size()];
+        
+        // intValue()를 이용해 Integer를 int로 변환하여 배열에 담는다.
+        for(int i = 0; i < answer.length; i++) {
+            answer[i] = arrayList.get(i).intValue();
+        }
+        
+        return answer;
+    }
+}
