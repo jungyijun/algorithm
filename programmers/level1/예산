@@ -1,0 +1,27 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int[] d, int budget) {
+        int answer = 0;
+        int sum = 0;
+        
+        // 작은 수부터 합산할 수 있도록 오름차순으로 정렬한다.
+        Arrays.sort(d);
+        
+        // sum이 budget과 같아질 때까지 합산한다.
+        for(int i = 0; i < d.length; i++) {
+            if(sum < budget) {
+                if((sum + d[i]) <= budget) {
+                    sum += d[i];
+                    answer++;
+                } else {
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+        
+        return answer;
+    }
+}
