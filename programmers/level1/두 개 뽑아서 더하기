@@ -1,0 +1,33 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] numbers) {
+        TreeSet<Integer> treeSet = new TreeSet<Integer>();
+        
+        // i와 j가 같지 않을 경우 더한다.
+        for(int i = 0; i < numbers.length; i++) {
+            for(int j = 0; j < numbers.length - 1; j++) {
+                if(i != j + 1) {
+                 treeSet.add(numbers[i] + numbers[j + 1]);   
+                }   
+            }
+        }
+        
+        // descendingSet으로 내림차순으로 정렬한 후
+        // 내림차순으로 정렬된 Set을 오름차순으로 정렬하기 위해 한번 더 내림차순으로 정렬한다.
+        // descendingSet()은 내림차순으로 정렬된 NavigableSet을 반환한다.
+        // descendingIterator()를 사용하면 Iterator가 반환된다.
+        NavigableSet<Integer> descendingSet = treeSet.descendingSet();
+        NavigableSet<Integer> acscendingSet = descendingSet.descendingSet();
+        
+        int[] answer = new int[acscendingSet.size()];
+        
+        int index = 0;
+        for(Integer value : acscendingSet) {
+            answer[index] = value.intValue();
+            index++;
+        }
+        
+        return answer;
+    }
+}
