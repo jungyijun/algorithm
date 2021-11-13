@@ -1,0 +1,27 @@
+import java.lang.*;
+
+class Solution {
+    public int solution(int n) {
+        StringBuilder sb = new StringBuilder();
+        int answer = 0;
+        int share = n;
+        int remainder = -1;
+        
+        // n을 3진법으로 변환한다.
+        while(share != 0) {
+            remainder = share % 3;
+            share = share / 3;
+            
+            sb.append(remainder);
+        }        
+        
+        // 3진법으로 변환된 값을 가진 sb를 String으로 변환 후
+        // 10진법으로 변환한 후 answer에 담는다.
+        String tempStr = sb.toString();
+        for(int i = 0; i < tempStr.length(); i++) {
+            answer += (tempStr.charAt(tempStr.length() - 1 - i) - 48) * Math.pow(3, i);
+        }
+        
+        return answer;
+    }
+}
