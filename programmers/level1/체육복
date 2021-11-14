@@ -1,0 +1,46 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int n, int[] lost, int[] reserve) {
+        int answer = n - lost.length;
+        
+        // 테스트케이스13, 18을 실패해서 찾아보니
+        // 5, [4, 2], [3, 5] 이런 경우에 틀렸다.
+        // 따라서 lost와 reserve를 오름차순으로 정렬해 앞번호 부터 빌려줄 수 있도록 한다.
+        Arrays.sort(lost);
+        Arrays.sort(reserve);
+        
+        // 여분을 가져온 잃어버린 학생을 찾는다.
+        for(int i = 0; i < reserve.length; i++) {
+            for(int j = 0; j < lost.length; j++) {
+                if(reserve[i] != -1 && lost[j] != -1 && reserve[i] == lost[j]) {
+                    reserve[i] = -1;
+                    lost[j] = -1;
+                    answer++;
+                    break;
+                }
+            }
+        }
+        
+        // 여분을 가져온 학생의 번호와 잃어버린 학생의 번호를 확인하며 빌려준다.
+        for(int i = 0; i < reserve.length; i++) {
+            for(int j = 0; j < lost.length; j++) {
+                if(reserve[i] != -1 && lost[j] != -1 && (reserve[i] - 1) == lost[j]) {
+                    reserve[i] = -1;
+                    lost[j] = -1;
+                    answer++;
+                    break;
+                }
+                
+                if(reserve[i] != -1 && lost[j] != -1 && (reserve[i] + 1) == lost[j]) {
+                    reserve[i] = -1;
+                    lost[j] = -1;
+                    answer++;
+                    break;
+                }
+            }
+        }
+        
+        return answer;
+    }
+}
