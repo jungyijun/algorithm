@@ -12,18 +12,11 @@ class Solution {
                 }   
             }
         }
-        
-        // descendingSet으로 내림차순으로 정렬한 후
-        // 내림차순으로 정렬된 Set을 오름차순으로 정렬하기 위해 한번 더 내림차순으로 정렬한다.
-        // descendingSet()은 내림차순으로 정렬된 NavigableSet을 반환한다.
-        // descendingIterator()를 사용하면 Iterator가 반환된다.
-        NavigableSet<Integer> descendingSet = treeSet.descendingSet();
-        NavigableSet<Integer> acscendingSet = descendingSet.descendingSet();
-        
-        int[] answer = new int[acscendingSet.size()];
+
+        int[] answer = new int[treeSet.size()];
         
         int index = 0;
-        for(Integer value : acscendingSet) {
+        for(Integer value : treeSet) {
             answer[index] = value.intValue();
             index++;
         }
