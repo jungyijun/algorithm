@@ -1,0 +1,54 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(int N, int[] stages) {
+        HashMap<Integer, Double> result = new HashMap<Integer, Double>();
+        int stage = 1;
+        
+        // 주어진 Stage까지 반복한다.
+        while(stage <= N) {
+            int totalCount = 0;
+            int failCount = 0;
+            
+            // 해당 Stage의 도달한 사용자와 도달하였지만 클리어하지 못한 사용자를 찾는다.
+            for(int i = 0; i < stages.length; i++) {
+                if(stage <= stages[i]) {
+                    if(stage == stages[i]) {
+                        failCount++;
+                    }
+                    
+                    totalCount++;
+                } 
+            }
+            
+            // 해당 Stage를 실패한 사용자가 없으면 실패율은 0이다.
+            // 실패한 사용자가 존재한다면 실패율 공식으로 연산한다.
+            if(failCount == 0) {
+                result.put(stage, 0.0);
+            } else {
+                result.put(stage, (double)failCount / totalCount);
+            }
+            
+            stage++;
+        }
+        
+        // Map을 Value 값으로 정렬하기 위해 ArrayList를 선언한다.
+        // Stage와 실패율을 한번에 관리하기 위해서 Map 자료구조를 사용했지만,
+        // ArrayList로 간단히 푸는 예제도 존재하더라...
+        ArrayList<Integer> sortList = new ArrayList<Integer>(result.keySet());
+        
+        // 내림차순으로 비교를 해야하므로 o2, o1로 비교를 하고,
+        // Value 값으로 비교하고 정렬은 Key 값으로 되기 때문에 원하는 정렬을 할 수 있다.
+        Collections.sort(sortList, (o1, o2) -> (result.get(o2).compareTo(result.get(o1))));
+
+        int[] answer = new int[sortList.size()];
+        
+        int index = 0;
+        for(Integer key : sortList){
+            answer[index] = key;
+            index++;
+        }
+        
+        return answer;
+    }
+}
