@@ -1,0 +1,15 @@
+class Solution {
+    public int solution(String s) {
+        int answer = 0;
+        String[] alphabet = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        
+        // contains로 해당 단어가 존재하면 Index로 치환해준다.
+        for(int i = 0; i < alphabet.length; i++) {
+            if(s.contains(alphabet[i])) {
+                s = s.replace(alphabet[i], String.valueOf(i));
+            }
+        }
+        
+        return answer = Integer.parseInt(s);
+    }
+}
