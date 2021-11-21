@@ -1,0 +1,36 @@
+class Solution {
+    public int[] solution(int[] lottos, int[] win_nums) {
+        int[] answer = new int[2];
+        int[] rank = {6, 6, 5 ,4 ,3 , 2, 1};
+        int matchCount = 0;
+        int zeroCount = 0;
+
+        // lottos의 번호를 win_nums의 값과 비교한다.
+        // 이후 값이 0이면 zeroCount를 증가시키며,
+        // win_nums와 일치하는 값은 matchCount를 증가시킨다.
+        for(int i = 0; i < lottos.length; i++) {
+            if(lottos[i] == 0) {
+                zeroCount++;
+                continue;
+            }
+            
+            for(int j = 0; j < win_nums.length; j++) {
+                if(lottos[i] == win_nums[j]) {
+                    matchCount++;
+                }
+            }
+        }
+        
+        // matchCount에 zeroCount를 더해 최고 등수를 구하고,
+        // 최저 등수는 matchCount로만 구한다.
+        if(zeroCount != 6) {
+            answer[0] = rank[matchCount + zeroCount];
+            answer[1] = rank[matchCount];
+        } else {
+            answer[0] = 1;
+            answer[1] = 6;
+        }
+        
+        return answer;
+    }
+}
