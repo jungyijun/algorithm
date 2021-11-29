@@ -1,0 +1,28 @@
+import java.lang.*;
+
+class Solution {
+    public String solution(String s) {
+        String tempString = s.toLowerCase();
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+        
+        // 런타임 오류가 발생해서 테스트 케이스를 찾아보았으며, 
+        // " adgagd 3eagdag " -> " Adgagd 3eagdag " 과 같이 처음과 끝에 공백이 존재하는 경우가 있었다.
+        // 기존에 사용했던 공백을 기준으로 split() 했던 방식을 버리고 charAt()으로 하나씩 접근했다.
+        for(int i = 0; i < tempString.length(); i++) {
+            if(count == 0) {
+                sb.append(Character.toUpperCase(tempString.charAt(i)));   
+            } else {
+                sb.append(tempString.charAt(i));
+            }
+            
+            count++;
+            
+            if(tempString.charAt(i) == ' ') {
+                count = 0;
+            }
+        }
+        
+        return sb.toString();
+    }
+}
