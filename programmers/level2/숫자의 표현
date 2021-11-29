@@ -1,0 +1,27 @@
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        int count = 1;    
+        
+        // count가 n보다 작거나 같을 때까지 반복한다.
+        // count를 증가시키면서 더하는 시작 값을 변경한다.
+        // 이떄 n과 같거나, n보다 커질 경우 break로 반복문을 탈출한다.
+        while(count <= n) {
+            int sum = 0;
+            for(int i = count; i <= n; i++) {
+                sum += i;
+                
+                if(sum == n) {
+                    answer++;
+                    break;
+                } else if(sum > n) {
+                    break;
+                }
+            }
+            
+            count++;
+        }
+            
+        return answer;
+    }
+}
