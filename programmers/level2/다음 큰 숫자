@@ -1,0 +1,19 @@
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        
+        int count = Integer.bitCount(n);
+        
+        // Integer 클래스의 bitCount() 는 정수를 binary로 변환 후 1의 개수를 세서 반환한다.
+        while(true) {
+            n++;
+            
+            if(count == Integer.bitCount(n)) {
+                answer = n;
+                break;
+            }
+        }
+        
+        return answer;
+    }
+}
