@@ -1,0 +1,18 @@
+class Solution {
+    public int[] solution(int[] prices) {
+        int[] answer = new int[prices.length];
+        
+        // prices i번째 index 보다 작은 수가 나오면 초를 세는걸 멈춘다.
+        for(int i = 0; i < prices.length; i++) {
+            for(int j = i + 1; j < prices.length; j++) {
+                answer[i] += 1;
+                
+                if(prices[i] > prices[j]) {
+                    break;
+                }
+            }
+        }
+        
+        return answer;
+    }
+}
