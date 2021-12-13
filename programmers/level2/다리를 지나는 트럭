@@ -1,0 +1,43 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int bridge_length, int weight, int[] truck_weights) {
+        Queue<Integer> queue = new LinkedList<Integer>();
+        int answer = 0;
+        int sum = 0;
+
+        // 1. 트럭의 개수만큼 반복한다.
+        // 2. 다리에 올라간 트럭이 존재하지 않으면 바로 다리위에 올린다.
+        // 3. 다리에 올라간 트럭의 개수와 다리에 올라갈 수 있는 최대 수를 체크한다.
+        //     * 이때 다리에 올라간 트럭의 수와 최대 수가 같으면 가장 먼저 올라간 트럭을 내보낸다.
+        // 4. 위의 경우가 아니라면 최대 수용 가능 무게와 다음 트럭의 무게의 합을 확인한다.
+        // 5. 최대 수용 가능 무게를 넘어서면 queue에 0을 넣으므로 기존의 트럭이 앞으로 갈 수 있게한다.
+        //     * 무게가 넘어가는 경우를 어떻게 처리할까 하다가 https://minhamina.tistory.com/241 블로그를 참고했다.
+        // 6. 트럭이 다리 위에 올라갈 때만 break를 하여 다음 트럭이 올라갈 수 있도록 한다.
+        // 7. 마지막으로 다리 위에 올라간 트럭 반복문이 종료되어 시간이 측정되지 않으므로 answer에 다리 길이만큼 더해준다.
+        for(int i = 0; i < truck_weights.length; i++) {
+            if(queue.isEmpty()) {
+                queue.offer(truck_weights[i]);
+                sum += truck_weights[i];
+                answer++;
+                continue;
+            }
+            
+            while(true) {
+                if(queue.size() == bridge_length) {
+                    sum -= queue.poll();
+                } else if(sum + truck_weights[i] <= weight) {
+                    queue.offer(truck_weights[i]);
+                    sum += truck_weights[i];
+                    answer++;
+                    break;
+                } else {
+                    queue.offer(0);
+                    answer++;
+                }
+            }
+        }
+        
+        return answer + bridge_length;
+    }
+}
