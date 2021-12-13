@@ -1,0 +1,27 @@
+import java.lang.*;
+
+class Solution {
+    public String solution(String number, int k) {
+        StringBuilder sb = new StringBuilder();
+        int max = 0;
+        int index = 0;        
+        
+        // 기존에는 Stack을 이용해 마지막에 담긴 값보다 다음 수가 크면 pop()을 하여
+        // 큰 수를 이어 담게 했지만 더 깔끔한 풀이가 있는거 같아
+        // https://jhhj424.tistory.com/32를 참고하여 풀었다.
+        for(int i = 0; i < number.length() - k; i++) {
+            max = 0;
+            
+            for(int j = index; j <= k + i; j++) {
+                if(max < number.charAt(j) - 48) {
+                    max = number.charAt(j) - 48;
+                    index = j + 1;
+                }
+            }
+            
+            sb.append(max);
+        }
+        
+        return sb.toString();
+    }
+}
