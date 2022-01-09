@@ -1,0 +1,22 @@
+class Solution {
+    public int solution(int[] numbers, int target) {
+        int answer = dfs(numbers, 0, 0, target);
+        
+        return answer;
+    }
+    
+    // k번째 정수까지 계산을 끝냈을 때, k + 1번째 정수는 + 또는 -로 두가지 경우의 결과를 계산한다.
+    // n번째 정수까지 계산한 후 결과 값이 타겟넘버와 같다면 1을 반환하고, 아니라면 0을 반환하는 메소드이다.
+    // 출처 https://haeng-on.tistory.com/10
+    public int dfs(int[] numbers, int depth, int sum, int target) {
+        if(depth == numbers.length) {
+            if(target == sum) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else {
+            return dfs(numbers, depth + 1, sum + numbers[depth], target) + dfs(numbers, depth + 1, sum - numbers[depth], target);
+        }
+    }
+}
