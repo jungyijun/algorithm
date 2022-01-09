@@ -1,0 +1,21 @@
+import java.util.*;
+
+class Solution {
+    public boolean solution(String[] phone_book) {
+        boolean answer = true;
+
+        // 사전순으로 정렬한다.
+        Arrays.sort(phone_book);
+        
+        // startsWith()를 이용해서 접두어에 포함되는지 확인한다.
+        // startsWith()는 prefix를 확인해서 true, false를 반환한다.
+        for(int i = 1; i < phone_book.length; i++) {
+           if(phone_book[i].startsWith(phone_book[i - 1])) {
+               answer = false;
+               break;
+           } 
+        }
+        
+        return answer;
+    }
+}
